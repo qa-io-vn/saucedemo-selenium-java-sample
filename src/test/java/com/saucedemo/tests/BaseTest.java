@@ -1,21 +1,13 @@
 package com.saucedemo.tests;
 
 import com.saucedemo.driver.DriverManager;
-import io.qameta.allure.Allure;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+@Listeners({io.qameta.allure.testng.AllureTestNg.class})
 public class BaseTest {
 
     protected WebDriver driver;
@@ -28,22 +20,6 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            Allure.addAttachment(result.getName() + "_failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-        }
         DriverManager.quitDriver();
-    }
-
-    private void takeScreenshot(String testName) {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File source = ts.getScreenshotAs(OutputType.FILE);
-        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String fileName = "screenshots/" + testName + "_" + timestamp + ".png";
-        try {
-            FileUtils.copyFile(source, new File(fileName));
-            System.out.println("Screenshot taken: " + fileName);
-        } catch (IOException e) {
-            System.err.println("Failed to take screenshot: " + e.getMessage());
-        }
     }
 }
