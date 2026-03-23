@@ -26,9 +26,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Clean allure-results
+        run: rm -rf allure-results && mkdir -p allure-results
+
       - name: Run tests
         run: mvn test -Dheadless=true
-        continue-on-error: true
 
       - name: Get Allure history
         uses: actions/checkout@v4
