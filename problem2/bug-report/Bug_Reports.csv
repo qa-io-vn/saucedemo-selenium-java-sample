@@ -1,0 +1,4 @@
+Bug ID,Title,Severity,Priority,Steps to Reproduce,Expected Result,Actual Result,Environment
+BUG-01,OTP Verification Bypass on Slow Network,Critical,High,"1. Initiate transfer. 2. Reach OTP screen. 3. Throttled network to 3G/Slow. 4. Rapidly tap Confirm without OTP.",System should block until OTP validated.,Transaction completes without OTP entry.,iOS 17.4 / Android 14
+BUG-02,Transaction History Sync Issue,Medium,Medium,"1. Complete successful transfer. 2. Immediately open History screen.",New record should appear at top instantly.,Record only appears after manual pull-to-refresh.,All Mobile OS
+BUG-03,Merchant Withdrawal (>15 digits),High,High,"1. Login as Merchant. 2. Enter 16+ digit bank account for withdrawal. 3. Click Next.",Allow up to 34 digits (IBAN standard).,Error: ""Invalid account number format"" for > 15 digits.,Merchant App v1.0.0
