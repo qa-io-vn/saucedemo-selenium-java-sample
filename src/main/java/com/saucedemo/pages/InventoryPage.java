@@ -18,6 +18,8 @@ public class InventoryPage {
     private final By title = By.className("title");
     private final By burgerMenu = By.id("react-burger-menu-btn");
     private final By logoutLink = By.id("logout_sidebar_link");
+    private final By cartContainer = By.id("shopping_cart_container");
+    private final By addToCartButton = By.id("add-to-cart-sauce-labs-backpack");
 
     public InventoryPage(WebDriver driver) {
         this.driver = driver;
@@ -31,6 +33,18 @@ public class InventoryPage {
     @Step("Check if title is displayed")
     public boolean isTitleDisplayed() {
         return driver.findElement(title).isDisplayed();
+    }
+
+    @Step("Add item to cart")
+    public void addBackpackToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+    }
+
+    @Step("Navigate to cart")
+    public void goToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(cartContainer)).click();
     }
 
     @Step("Logout from application")
