@@ -26,7 +26,7 @@ public class CheckoutTest extends BaseTest {
 
         // 2. Add item to cart
         inventoryPage.addBackpackToCart();
-        inventoryPage.goToCart();
+         inventoryPage.goToCart();
         Assert.assertTrue(driver.getCurrentUrl().contains("cart.html"), "Should be on cart page");
 
         // 3. Verify item in cart and checkout

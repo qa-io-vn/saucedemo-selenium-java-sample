@@ -25,15 +25,15 @@ public class CheckoutStepOnePage {
     @Step("Fill in information")
     public void fillInformation(String firstName, String lastName, String postalCode) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement firstNameElement = wait.until(ExpectedConditions.elementToBeClickable(firstNameField));
+        WebElement firstNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField));
         firstNameElement.clear();
         firstNameElement.sendKeys(firstName);
         
-        WebElement lastNameElement = wait.until(ExpectedConditions.elementToBeClickable(lastNameField));
+        WebElement lastNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(lastNameField));
         lastNameElement.clear();
         lastNameElement.sendKeys(lastName);
         
-        WebElement postalCodeElement = wait.until(ExpectedConditions.elementToBeClickable(postalCodeField));
+        WebElement postalCodeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(postalCodeField));
         postalCodeElement.clear();
         postalCodeElement.sendKeys(postalCode);
     }
