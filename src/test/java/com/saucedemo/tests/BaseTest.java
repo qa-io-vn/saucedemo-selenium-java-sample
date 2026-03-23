@@ -1,7 +1,7 @@
 package com.saucedemo.tests;
 
 import com.saucedemo.driver.DriverManager;
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -10,6 +10,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,14 +29,9 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
-            saveScreenshot(result.getMethod().getMethodName() + "_failure");
+            Allure.addAttachment(result.getName() + "_failure", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
         DriverManager.quitDriver();
-    }
-
-    @Attachment(value = "{0}", type = "image/png")
-    private byte[] saveScreenshot(String testName) {
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     private void takeScreenshot(String testName) {
