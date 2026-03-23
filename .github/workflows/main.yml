@@ -57,12 +57,14 @@ jobs:
           ls -R allure-results || echo "allure-results not found"
           echo "Listing allure-history if exists:"
           ls -R allure-history || echo "allure-history not found"
+          mkdir -p allure-history
 
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
+          publish_dir: ./allure-history
           publish_branch: gh-pages
           force_orphan: true
+          allow_empty_commit: true
