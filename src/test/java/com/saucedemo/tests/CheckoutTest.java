@@ -36,7 +36,7 @@ public class CheckoutTest extends BaseTest {
         // 4. Fill information
         checkoutStepOnePage.fillInformation("John", "Doe", "12345");
         checkoutStepOnePage.clickContinue();
-        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two2.html"), "Should be on checkout step two page");
+        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-two.html"), "Should be on checkout step two page");
 
         // 5. Verify overview and finish
         Assert.assertEquals(checkoutStepTwoPage.getCartItemName(), "Sauce Labs Backpack", "Item name in overview should be correct");
