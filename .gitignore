@@ -1,12 +1,12 @@
 target/
-.idea/
-*.iml
-.vscode/
-screenshots/
 allure-results/
 allure-report/
 allure-history/
 gh-pages/
+.idea/
+*.iml
+.vscode/
+screenshots/
 .zencoder/
 .zenflow/
 .DS_Store
