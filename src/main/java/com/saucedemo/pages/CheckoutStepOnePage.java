@@ -2,6 +2,7 @@ package com.saucedemo.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -25,15 +26,16 @@ public class CheckoutStepOnePage {
     @Step("Fill in information")
     public void fillInformation(String firstName, String lastName, String postalCode) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement firstNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField));
+        
+        WebElement firstNameElement = wait.until(ExpectedConditions.elementToBeClickable(firstNameField));
         firstNameElement.clear();
         firstNameElement.sendKeys(firstName);
         
-        WebElement lastNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(lastNameField));
+        WebElement lastNameElement = wait.until(ExpectedConditions.elementToBeClickable(lastNameField));
         lastNameElement.clear();
         lastNameElement.sendKeys(lastName);
         
-        WebElement postalCodeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(postalCodeField));
+        WebElement postalCodeElement = wait.until(ExpectedConditions.elementToBeClickable(postalCodeField));
         postalCodeElement.clear();
         postalCodeElement.sendKeys(postalCode);
     }

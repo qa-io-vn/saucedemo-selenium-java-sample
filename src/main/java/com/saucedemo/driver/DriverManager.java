@@ -34,6 +34,18 @@ public class DriverManager {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.addArguments("--disable-save-password-bubble");
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--disable-features=PasswordLeakDetection,PasswordGeneration");
+                
+                java.util.Map<String, Object> prefs = new java.util.HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                prefs.put("profile.password_manager_leak_detection", false);
+                prefs.put("autofill.profile_enabled", false);
+                prefs.put("autofill.credit_card_enabled", false);
+                chromeOptions.setExperimentalOption("prefs", prefs);
+
                 if (headless) {
                     chromeOptions.addArguments("--headless=new");
                 }
