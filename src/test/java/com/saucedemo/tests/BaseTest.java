@@ -28,7 +28,7 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
-            saveScreenshot(result.getName());
+            saveScreenshot(result.getMethod().getMethodName() + "_failure");
         }
         DriverManager.quitDriver();
     }
